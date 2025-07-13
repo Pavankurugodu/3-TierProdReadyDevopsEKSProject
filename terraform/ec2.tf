@@ -13,7 +13,7 @@ data "aws_ami" "os_image" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "terra-automate-key"
-  public_key = file("E:/3-Tier Production Ready DevOps Project on AWS EK/terra-key.pub")
+  public_key = file("${path.module}/terra-key.pub")
 }
 
 resource "aws_security_group" "allow_user_to_connect" {
