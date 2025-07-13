@@ -1,6 +1,6 @@
 
 resource "aws_security_group" "allow_user_bastion" {
-  name        = "bastion_host_SG"
+  name        = "bastion-host-SG"
   description = "Allow user to connect"
   vpc_id      = module.vpc.vpc_id
   dynamic "ingress" {
@@ -27,7 +27,7 @@ resource "aws_security_group" "allow_user_bastion" {
   }
 
   tags = {
-    Name = "bastion_security"
+    Name = "bastion-security"
   }
 }
 
