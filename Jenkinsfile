@@ -5,10 +5,10 @@ pipeline {
     
     environment {
         // Update the main app image name to match the deployment file
-        DOCKER_IMAGE_NAME = 'laxg66/easyshop-app'
-        DOCKER_MIGRATION_IMAGE_NAME = 'laxg66/easyshop-migration'
+        DOCKER_IMAGE_NAME = 'pavirocks/easyshop-app'
+        DOCKER_MIGRATION_IMAGE_NAME = 'pavirocks/easyshop-migration'
         DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
-        GITHUB_CREDENTIALS = credentials('github-credentials')
+        GITHUB_CREDENTIALS = credentials('github-cred')
         GIT_BRANCH = "master"
     }
     
@@ -24,7 +24,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    clone("https://github.com/lax66/tws-e-commerce-app_hackathon.git","master")
+                    clone("https://github.com/Pavankurugodu/3-TierProdReadyDevopsEKSProject.git","master")
                 }
             }
         }
@@ -86,7 +86,7 @@ pipeline {
                             docker_push(
                                 imageName: env.DOCKER_IMAGE_NAME,
                                 imageTag: env.DOCKER_IMAGE_TAG,
-                                credentials: 'docker-hub-credentials'
+                                credentials: 'docker-cred'
                             )
                         }
                     }
@@ -98,7 +98,7 @@ pipeline {
                             docker_push(
                                 imageName: env.DOCKER_MIGRATION_IMAGE_NAME,
                                 imageTag: env.DOCKER_IMAGE_TAG,
-                                credentials: 'docker-hub-credentials'
+                                credentials: 'docker-cred'
                             )
                         }
                     }
@@ -113,9 +113,9 @@ pipeline {
                     update_k8s_manifests(
                         imageTag: env.DOCKER_IMAGE_TAG,
                         manifestsPath: 'kubernetes',
-                        gitCredentials: 'github-credentials',
-                        gitUserName: 'Jenkins CI',
-                        gitUserEmail: 'misc.lucky66@gmail.com'
+                        gitCredentials: 'github-cred',
+                        gitUserName: 'Pavankurugodu',
+                        gitUserEmail: 'pavanpavi56@gmail.com'
                     )
                 }
             }
