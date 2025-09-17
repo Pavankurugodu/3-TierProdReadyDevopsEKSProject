@@ -32,7 +32,7 @@ module "eks" {
     # One access entry with a policy associated
     example = {
       #principal_arn = "arn:aws:iam::876997124628:user/terraform"
-      principal_arn = "arn:aws:iam::471112946392:user/Terraform-user"
+      principal_arn = "arn:aws:iam::471112946392:user/Basic-Admin"
 
 
       policy_associations = {
